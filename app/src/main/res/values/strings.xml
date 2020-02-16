@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Expenditure</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn">ADD ITEM</string>
+    <string name="EditText1">Name</string>
+    <string name="EditText2">Price</string>
+    <string name="EditText3">Date</string>
+    <string name="btn2">VIEW ITEMS</string>
+</resources>

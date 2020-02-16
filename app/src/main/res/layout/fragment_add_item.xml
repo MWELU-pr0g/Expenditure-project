@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddItem"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/addfragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/edit1"
+        android:layout_marginBottom="30dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/EditText1" />
+    <EditText
+        android:id="@+id/edit2"
+        android:layout_marginBottom="30dp"
+
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/EditText2" />
+    <EditText
+        android:id="@+id/edit3"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/EditText3" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/add_item_btn"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn"
+        android:textSize="20sp"
+        />
+        <Button
+        android:id="@+id/view_item_btn"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn2"
+        android:textSize="20sp"
+        />
+
+</LinearLayout>
+</LinearLayout>
