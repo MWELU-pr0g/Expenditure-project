@@ -27,11 +27,11 @@ public class ExependitureAdapter extends CursorAdapter {
         TextView name = (TextView) view.findViewById(R.id.text1);
         name.setText(cursor.getString(cursor.getColumnIndex("name")));
 
-        TextView price = (TextView) view.findViewById(R.id.text2);
-        price.setText(cursor.getString(cursor.getColumnIndex("price")));
-
-         TextView date = (TextView) view.findViewById(R.id.text3);
-        date.setText(cursor.getString(cursor.getColumnIndex("date")));
+//        TextView price = (TextView) view.findViewById(R.id.text2);
+//        price.setText(cursor.getString(cursor.getColumnIndex("price")));
+//
+//         TextView date = (TextView) view.findViewById(R.id.text3);
+//        date.setText(cursor.getString(cursor.getColumnIndex("date")));
 
 
     }

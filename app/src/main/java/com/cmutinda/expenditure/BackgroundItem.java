@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.Toast;
 ;
 
-public class BackgroundItem extends AsyncTask<String,Void,String> {
+public class BackgroundItem extends AsyncTask<String, Void, String> {
 
     Context ctx;
 
-    BackgroundItem(View.OnClickListener ctx) {
+    BackgroundItem(Context ctx) {
 
         this.ctx = (Context) ctx;
     }
@@ -30,32 +30,33 @@ public class BackgroundItem extends AsyncTask<String,Void,String> {
         String method = params[0];
         ItemDbHelper dbHelper = new ItemDbHelper(ctx);
 
-        BackgroundItem backgroundItem = new BackgroundItem((View.OnClickListener) ctx);
+        BackgroundItem backgroundItem = new BackgroundItem(ctx);
         if (method.equals("addItem")) {
-            int quantity = Integer.parseInt(params[1]);
-            String name = params[2];
-            int price = Integer.parseInt(params[3]);
-            int date = Integer.parseInt(params[4]);
+            int price = Integer.parseInt(params[2]);
+            String name = params[1];
+            int date = Integer.parseInt(params[3]);
+            int qqty = Integer.parseInt(params[4]);
 
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-            dbHelper.addItem(db, quantity, name, price, date);
+            dbHelper.addItem(db, qqty, name, date, price);
 
             return "one row is inserted";
         } else if (method.equals("get_item")) {
 
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            Cursor cursor=dbHelper.getItem(db);
+            Cursor cursor = dbHelper.getItem(db);
         }
         return null;
 
     }
-            @Override
-            protected void onProgressUpdate (Void...values){
-                super.onProgressUpdate(values);
-            }
 
-            @Override
-            protected void onPostExecute (String result){
-                Toast.makeText(ctx, result, Toast.LENGTH_LONG);
-            }
-        }
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        Toast.makeText(ctx, result, Toast.LENGTH_LONG);
+    }
+}

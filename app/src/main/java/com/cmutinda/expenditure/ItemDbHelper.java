@@ -10,12 +10,14 @@ import android.util.Log;
 import static android.content.ContentValues.TAG;
 
 public class ItemDbHelper extends SQLiteOpenHelper{
+    private static final String TAG = "ItemDbHelper";
 
     public static final String DATABASE_NAME="expenditure_info.db";
     public static final int DATABASE_VERSION=1;
 
     public static final String CREATE_TABLE = "create table "+ItemContract.ItemEntry.TABLE_NAME+
-            "("+ItemContract.ItemEntry.QUANTITY+", number"
+            "(_id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+            +ItemContract.ItemEntry.QUANTITY+" number,"
             +ItemContract.ItemEntry.ITEM_NAME+" text,"
             +ItemContract.ItemEntry.PRICE +" text,"
             +ItemContract.ItemEntry.DATE+" number)";
@@ -29,14 +31,14 @@ public class ItemDbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "ItemDbHelper:table created... ");
 
         db.execSQL(CREATE_TABLE);
+        Log.d(TAG, "ItemDbHelper:table created... ");
     }
 
 //    there is a differnce in creating a object of SQliteOpenHelper AND SQLiteDatabase
-    public void addItem(SQLiteDatabase db, int quantity, String item_name, int price
-            , int date){
+    public void addItem(SQLiteDatabase db, int quantity, String item_name, int date
+            , int price){
         ContentValues values=new ContentValues();
         values.put(ItemContract.ItemEntry.QUANTITY,quantity);
         values.put(ItemContract.ItemEntry.ITEM_NAME,item_name);
@@ -49,9 +51,11 @@ public class ItemDbHelper extends SQLiteOpenHelper{
 
     }
     public Cursor getItem(SQLiteDatabase db){
-        String [] projection={ItemContract.ItemEntry.ITEM_NAME,ItemContract.ItemEntry.PRICE,ItemContract.ItemEntry.DATE};
+        String [] projection={ItemContract.ItemEntry.ITEM_NAME,ItemContract.ItemEntry.ITEM_NAME,ItemContract.ItemEntry.PRICE,ItemContract.ItemEntry.DATE};
 
-        Cursor cursor=db.query(ItemContract.ItemEntry.TABLE_NAME,projection,null,null,null,null,null);
+       // Cursor cursor=db.query(ItemContract.ItemEntry.TABLE_NAME,projection,null,null,null,null,null);
+
+        Cursor cursor = db.rawQuery("SELECT  * FROM " + ItemContract.ItemEntry.TABLE_NAME, null);
 
         return cursor;
     }
