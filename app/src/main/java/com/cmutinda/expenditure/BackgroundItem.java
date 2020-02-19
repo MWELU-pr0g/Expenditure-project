@@ -10,13 +10,15 @@ import android.widget.Toast;
 ;
 
 public class BackgroundItem extends AsyncTask<String,Void,String> {
+    ItemDbHelper itemDbHelper;
 
     Context ctx;
 
-    BackgroundItem(View.OnClickListener ctx) {
+    BackgroundItem(Context ctx) {
 
-        this.ctx = (Context) ctx;
+        this.ctx = ctx;
     }
+
 
     @Override
     protected void onPreExecute() {
@@ -30,7 +32,7 @@ public class BackgroundItem extends AsyncTask<String,Void,String> {
         String method = params[0];
         ItemDbHelper dbHelper = new ItemDbHelper(ctx);
 
-        BackgroundItem backgroundItem = new BackgroundItem((View.OnClickListener) ctx);
+        BackgroundItem backgroundItem = new BackgroundItem( ctx);
         if (method.equals("addItem")) {
             int quantity = Integer.parseInt(params[1]);
             String name = params[2];
@@ -45,6 +47,7 @@ public class BackgroundItem extends AsyncTask<String,Void,String> {
 
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor=dbHelper.getItem(db);
+            cursor.moveToFirst();
         }
         return null;
 

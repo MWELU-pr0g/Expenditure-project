@@ -1,6 +1,7 @@
 package com.cmutinda.expenditure;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class AddItem extends Fragment {
     String name,price,date;
 
 
-    public AddItem() {
+    public AddItem(Context context) {
         // Required empty public constructor
     }
     public interface OnDbOpListener{
@@ -54,8 +55,10 @@ public class AddItem extends Fragment {
                 price=e_price.getText().toString();
                 date=e_date.getText().toString();
 
-                BackgroundItem backgroundItem=new BackgroundItem(this);
-                backgroundItem.execute("addItem",name,price,date);
+
+
+//                BackgroundItem backgroundItem=new BackgroundItem();
+//                backgroundItem.execute("addItem",name,price,date);
 
                 ItemDbHelper dbHelper=new ItemDbHelper(getActivity());
                 SQLiteDatabase db=dbHelper.getReadableDatabase();

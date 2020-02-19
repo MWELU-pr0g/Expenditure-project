@@ -48,8 +48,8 @@ public class ExpenditureList extends Fragment  {
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddItem addItem=new AddItem();
-                MainActivity.fragmentManager.beginTransaction().add(R.id.frag_container, new AddItem(),null).addToBackStack(null).commit();
+                AddItem addItem=new AddItem(getContext());
+                MainActivity.fragmentManager.beginTransaction().add(R.id.frag_container, new AddItem(getContext()),null).addToBackStack(null).commit();
 
 
 
