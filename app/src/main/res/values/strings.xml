@@ -10,4 +10,5 @@
     <string name="btn2">VIEW ITEMS</string>
     <string name="title_activity_list_item">ListItemActivity</string>
     <string name="price">Kshs %s</string>
+    <string name="title_activity_main">Home</string>
 </resources>

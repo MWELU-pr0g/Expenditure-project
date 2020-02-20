@@ -66,6 +66,7 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
             mcursor.close();
         }
         if(newCursor!=null){
+            mcursor = newCursor;
             notifyDataSetChanged();
 
         }
