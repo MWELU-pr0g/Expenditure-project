@@ -44,10 +44,6 @@ public class ListItemActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(ListItemActivity.this, AddItemActivity.class));
-//                AddItem addItem = new AddItem();
-//                MainActivity.fragmentManager.beginTransaction().add(R.id.frag_container, new AddItem(), null).addToBackStack(null).commit();
-
-
             }
 
         });

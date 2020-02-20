@@ -9,7 +9,6 @@ import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -54,7 +53,7 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
 
 
          holder.name.setText(name);
-         holder.price.setText(String.valueOf(price));
+         holder.price.setText(mctx.getString(R.string.price, String.valueOf(price)));
          holder.date.setText(String.valueOf(date));
     }
     @Override

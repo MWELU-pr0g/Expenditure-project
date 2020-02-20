@@ -41,9 +41,10 @@ public class AddItemActivity extends AppCompatActivity {
                 date = e_date.getText().toString();
                 String qqty = e_quantitiy.getText().toString();
 
+                BackgroundItem backgroundItem=new BackgroundItem(AddItemActivity.this);
+                backgroundItem.execute("addItem",name,price,date,qqty);
+                finish();
 
-
-                //MainActivity.fragmentManager.beginTransaction().replace(R.id.recycler_view, new ExpenditureList(),null).addToBackStack(null).commit();
 
             }
 
