@@ -8,4 +8,5 @@
     <string name="EditText2">Price</string>
     <string name="EditText3">Date</string>
     <string name="btn2">VIEW ITEMS</string>
+    <string name="title_activity_list_item">ListItemActivity</string>
 </resources>

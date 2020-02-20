@@ -10,29 +10,65 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class ExependitureAdapter extends CursorAdapter {
-    LayoutInflater inflater;
-    public ExependitureAdapter(Context context, Cursor c, int flags) {
-        super(context, c, flags);
+import androidx.recyclerview.widget.RecyclerView;
+
+
+public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapter.ExpenditureViewHolder> {
+    private Context mctx;
+    private Cursor mcursor;
+    public  ExependitureAdapter(Context context, Cursor cursor){
+
+        mctx=context;
+        mcursor=cursor;
+    }
+    public class ExpenditureViewHolder extends RecyclerView.ViewHolder{
+        public TextView name;
+        public TextView price;
+        public TextView date;
+
+        public ExpenditureViewHolder( View itemView) {
+            super(itemView);
+
+            name=itemView.findViewById(R.id.text1);
+            price=itemView.findViewById(R.id.text2);
+            date=itemView.findViewById(R.id.text3);
+        }
+    }
+
+
+
+    @Override
+    public ExpenditureViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+        LayoutInflater inflater=LayoutInflater.from(mctx);
+       View view= inflater.inflate(R.layout.row_layout,parent,false);
+        return new ExpenditureViewHolder(view);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    public void onBindViewHolder( ExpenditureViewHolder holder, int position) {
+        if(!mcursor.moveToPosition(position)){
+            return;}
+         String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.ITEM_NAME));
+         int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.PRICE));
+         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.DATE));
 
-        return LayoutInflater.from(context).inflate(R.layout.row_layout, parent, false);
+
+         holder.name.setText(name);
+         holder.price.setText(String.valueOf(price));
+         holder.date.setText(String.valueOf(date));
     }
-
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        TextView name = (TextView) view.findViewById(R.id.text1);
-        name.setText(cursor.getString(cursor.getColumnIndex("name")));
-
-        TextView price = (TextView) view.findViewById(R.id.text2);
-        price.setText(cursor.getString(cursor.getColumnIndex("price")));
-
-         TextView date = (TextView) view.findViewById(R.id.text3);
-        date.setText(cursor.getString(cursor.getColumnIndex("date")));
-
-
+    public int getItemCount() {
+        return mcursor.getCount();
     }
+
+  public void swapCursor(Cursor newCursor){
+        if(mcursor!=null){
+            mcursor.close();
+        }
+        if(newCursor!=null){
+            notifyDataSetChanged();
+
+        }
+  }
 }

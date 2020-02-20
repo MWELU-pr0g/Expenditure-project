@@ -12,6 +12,7 @@
         android:layout_gravity="right"
         android:layout_width="100dp"
         android:layout_height="70dp"
+        android:text="ADD"
         android:src="@drawable/plus_purple"/>
 
 

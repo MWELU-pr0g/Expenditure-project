@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements ExpenditureList.OnDbOpListener {
+public class MainActivity extends AppCompatActivity {
 public static FragmentManager fragmentManager;
 
   ListView listView;
@@ -38,8 +38,5 @@ public static FragmentManager fragmentManager;
 
         }}
 
-    @Override
-    public void dbOpPerformed(int method) {
 
-    }
 }
