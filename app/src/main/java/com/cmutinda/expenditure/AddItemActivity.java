@@ -1,14 +1,19 @@
 package com.cmutinda.expenditure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddItemActivity extends Activity {
 
     private Button addbutton;
     private Button viewbutton;
@@ -22,9 +27,6 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-
-        ItemDbHelper dbHelper = new ItemDbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         addbutton = findViewById(R.id.add_item_btn);
         viewbutton = findViewById(R.id.view_item_btn);
@@ -42,7 +44,7 @@ public class AddItemActivity extends AppCompatActivity {
                 String qqty = e_quantitiy.getText().toString();
 
                 BackgroundItem backgroundItem=new BackgroundItem(AddItemActivity.this);
-                backgroundItem.execute("addItem",name,price,date,qqty);
+                backgroundItem.execute("addItem",name,price,date);
                 finish();
 
 
@@ -55,7 +57,19 @@ public class AddItemActivity extends AppCompatActivity {
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent( AddItemActivity.this,MainActivity.class));
 
+
+
+                ItemDbHelper dbHelper = new ItemDbHelper(getApplicationContext());
+                SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+
+
+                RecyclerView recyclerView = findViewById(R.id.recycler_view);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplication()));
+                adapter = new ExependitureAdapter(this, getItem());
+                recyclerView.setAdapter(adapter);
 
 
             }

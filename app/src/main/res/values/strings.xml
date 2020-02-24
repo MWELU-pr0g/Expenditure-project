@@ -4,6 +4,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn">ADD ITEM</string>
+    <string name="username">username</string>
+    <string name="pwd">password</string>
+    <string name="account">Not Registered? Create account</string>
+    <string name="login">Login</string>
     <string name="EditText1">Name</string>
     <string name="EditText2">Price</string>
     <string name="EditText3">Date</string>

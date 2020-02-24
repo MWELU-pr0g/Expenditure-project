@@ -18,8 +18,8 @@ public class ItemDbHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME="expenditure_info.db";
     public static final int DATABASE_VERSION=1;
 
-    public static final String CREATE_TABLE = "create table "+ItemContract.ItemEntry.TABLE_NAME+
-            "(_id INTEGER PRIMARY KEY AUTOINCREMENT ,"
+    public static final String CREATE_TABLE = "CREATE TABLE "+ItemContract.ItemEntry.TABLE_NAME+
+            "("
             +ItemContract.ItemEntry.QUANTITY+" integer,"
             +ItemContract.ItemEntry.ITEM_NAME+" text,"
             +ItemContract.ItemEntry.PRICE +" text,"
@@ -40,7 +40,7 @@ public class ItemDbHelper extends SQLiteOpenHelper{
     }
 
 //    there is a differnce in creating a object of SQliteOpenHelper AND SQLiteDatabase
-    public void addItem(SQLiteDatabase db, int quantity, String item_name, int date
+    public void addItem(SQLiteDatabase db, String quantity, int item_name, int date
             , int price){
         ContentValues values=new ContentValues();
         values.put(ItemContract.ItemEntry.QUANTITY,quantity);

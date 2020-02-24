@@ -35,24 +35,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        ItemDbHelper dbHelper = new ItemDbHelper(this);
-        db = dbHelper.getReadableDatabase();
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ExependitureAdapter(this, getItem());
-        recyclerView.setAdapter(adapter);
 
     }
 
 
-    private Cursor getItem() {
+    public Cursor getItem() {
         Cursor cursor = db.query(ItemContract.ItemEntry.TABLE_NAME, null, null, null, null, null, null);
 
-//
-
-        return cursor;
-
+return cursor;
     }
 
     @Override
