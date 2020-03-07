@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +27,8 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
             super(itemView);
 
             name=itemView.findViewById(R.id.text1);
-            price=itemView.findViewById(R.id.text2);
-            date=itemView.findViewById(R.id.text3);
+            price=itemView.findViewById(R.id.text3);
+            date=itemView.findViewById(R.id.text2);
         }
     }
 
@@ -47,9 +45,9 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
     public void onBindViewHolder( ExpenditureViewHolder holder, int position) {
         if(!mcursor.moveToPosition(position)){
             return;}
-         String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.ITEM_NAME));
-         int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.PRICE));
-         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.DATE));
+         String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
+         int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
+         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DATE));
 
 
          holder.name.setText(name);

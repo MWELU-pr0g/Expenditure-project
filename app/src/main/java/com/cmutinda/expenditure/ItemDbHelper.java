@@ -6,28 +6,32 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.view.View;
+import android.widget.EditText;
 
-import javax.crypto.spec.DESKeySpec;
+import static com.cmutinda.expenditure.ItemContract.ItemEntry.COLUMN_DATE;
+import static com.cmutinda.expenditure.ItemContract.ItemEntry.COLUMN_NAME;
+import static com.cmutinda.expenditure.ItemContract.ItemEntry.COLUMN_PRICE;
+import static com.cmutinda.expenditure.ItemContract.ItemEntry.TABLE_NAME;
 
-import static android.content.ContentValues.TAG;
+public class ItemDbHelper extends SQLiteOpenHelper {
 
-public class ItemDbHelper extends SQLiteOpenHelper{
+    private EditText editName,editPrice,editDate,editQty;
     private static final String TAG = "ItemDbHelper";
 
-    public static final String DATABASE_NAME="expenditure_info.db";
-    public static final int DATABASE_VERSION=1;
+    public static final String DATABASE_NAME = "expenditure_info.db";
+    public static final int DATABASE_VERSION = 1;
 
-    public static final String CREATE_TABLE = "CREATE TABLE "+ItemContract.ItemEntry.TABLE_NAME+
+    public static final String CREATE_TABLE = "CREATE TABLE " + ItemContract.ItemEntry.TABLE_NAME +
             "("
-            +ItemContract.ItemEntry.QUANTITY+" integer,"
-            +ItemContract.ItemEntry.ITEM_NAME+" text,"
-            +ItemContract.ItemEntry.PRICE +" text,"
-            +ItemContract.ItemEntry.DATE+" integer)";
-    public static final String DROP_TABLE=" DROP TABLE IF EXISTS "+ItemContract.ItemEntry.TABLE_NAME;
+            + ItemContract.ItemEntry.COLUMN_QUANTITY + "  integer,"
+            + ItemContract.ItemEntry.COLUMN_NAME + " text,"
+            + ItemContract.ItemEntry.COLUMN_PRICE + " text,"
+            + COLUMN_DATE + " integer)";
+    public static final String DROP_TABLE = " DROP TABLE IF EXISTS " + ItemContract.ItemEntry.TABLE_NAME;
 
     public ItemDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        SQLiteDatabase database = this.getWritableDatabase();
 
         Log.d(TAG, "ItemDbHelper:database created... ");
     }
@@ -35,25 +39,26 @@ public class ItemDbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+
+
         db.execSQL(CREATE_TABLE);
         Log.d(TAG, "ItemDbHelper:table created... ");
     }
 
-//    there is a differnce in creating a object of SQliteOpenHelper AND SQLiteDatabase
+    //    there is a differnce in creating a object of SQliteOpenHelper AND SQLiteDatabase
     public void addItem(SQLiteDatabase db, String quantity, int item_name, int date
-            , int price){
-        ContentValues values=new ContentValues();
-        values.put(ItemContract.ItemEntry.QUANTITY,quantity);
-        values.put(ItemContract.ItemEntry.ITEM_NAME,item_name);
-        values.put(ItemContract.ItemEntry.DATE,date);
-        values.put(ItemContract.ItemEntry.PRICE,price);
+            , int price) {
 
-       db.insert(ItemContract.ItemEntry.TABLE_NAME,null,values);
+    ContentValues values = new ContentValues();
+        values.put(ItemContract.ItemEntry.COLUMN_QUANTITY,quantity);
+        values.put(ItemContract.ItemEntry.COLUMN_NAME, item_name);
+        values.put(ItemContract.ItemEntry.COLUMN_DATE, date);
+        values.put(ItemContract.ItemEntry.COLUMN_PRICE, price);
 
+        db.insert(ItemContract.ItemEntry.TABLE_NAME,null, values);
 
 
     }
-
 
 
     @Override
@@ -64,4 +69,28 @@ public class ItemDbHelper extends SQLiteOpenHelper{
 
     }
 
+    public Cursor getItem() {
+
+            SQLiteDatabase db = this.getReadableDatabase();
+
+
+        String[] projection = {
+                COLUMN_NAME, COLUMN_PRICE};
+        Cursor cursor = db.query(TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                null,
+                null,                               // The columns for the WHERE clause// ,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null // The sort order
+        );
+//
+        if (cursor != null)
+            cursor.moveToNext();
+
+        cursor.getColumnIndex(COLUMN_NAME);
+        cursor.getColumnIndex(COLUMN_PRICE);
+
+        return cursor;
+    }
 }

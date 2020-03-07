@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "404804609962",
+    "firebase_url": "https://expenditure-c8c6a.firebaseio.com",
+    "project_id": "expenditure-c8c6a",
+    "storage_bucket": "expenditure-c8c6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404804609962:android:c759698998c668d4f36dd3",
+        "android_client_info": {
+          "package_name": "com.cmutinda.expenditure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404804609962-h4d38c2dabf7ou3ti4iuom48ccrml6so.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cmutinda.expenditure",
+            "certificate_hash": "b82b057186eeadce208aabbce64ab9a0f6d77ec4"
+          }
+        },
+        {
+          "client_id": "404804609962-0ab7bm080nrhsi8ubg09g30c0ao7vh11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqy6Q5p2sXqK5DiCVwLGw_v2fguu7f1P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404804609962-0ab7bm080nrhsi8ubg09g30c0ao7vh11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

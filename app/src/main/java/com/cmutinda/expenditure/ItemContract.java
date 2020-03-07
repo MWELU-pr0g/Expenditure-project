@@ -9,10 +9,11 @@ public final class ItemContract {
 
     public  static class ItemEntry implements BaseColumns {
         public static final String TABLE_NAME="shopping_list";
-        public static final String QUANTITY="quantity";
-        public static final String ITEM_NAME="item_name";
-        public static final String PRICE ="price";
-        public static final String DATE="date";
+        public static final String COLUMN_QUANTITY ="quantity";
+        public static final String COLUMN_NAME ="item_name";
+        public static final String COLUMN_PRICE ="price";
+        public static final String COLUMN_DATE ="date";
+
 
     }
 }
