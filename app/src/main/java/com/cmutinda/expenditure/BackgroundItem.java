@@ -23,29 +23,26 @@ public class BackgroundItem extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String[] params) {
-        try {
             String method = params[0];
             ItemDbHelper dbHelper = new ItemDbHelper(ctx);
-            if (method.equals("addItem")) {
-                int price = Integer.parseInt(params[2]);
-                String name = params[1];
+            if (method.equals("add_Item")) {
+                int price = Integer.parseInt(params[4]);
+                String name = params[2];
                 int date = Integer.parseInt(params[3]);
-                int qqty = Integer.parseInt(params[4]);
+                int qqty = Integer.parseInt(params[1]);
 
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                dbHelper.addItem(db, name, date, qqty, price);
-
+                dbHelper.addItem(db, qqty,name,date,price);
                 return "one row is inserted";
+
             } else if (method.equals("getItem")) {
                 SQLiteDatabase db = dbHelper.getReadableDatabase();
-                dbHelper.getItem();
+                dbHelper.getItem(db);
 
 
             }
 
 
-        } catch (NumberFormatException ex) {
-        }
         return null;
 
     }

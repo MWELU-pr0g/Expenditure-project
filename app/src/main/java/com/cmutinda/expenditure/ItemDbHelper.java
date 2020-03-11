@@ -19,19 +19,18 @@ public class ItemDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "ItemDbHelper";
 
     public static final String DATABASE_NAME = "expenditure_info.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public static final String CREATE_TABLE = "CREATE TABLE " + ItemContract.ItemEntry.TABLE_NAME +
             "("
-            + ItemContract.ItemEntry.COLUMN_QUANTITY + "  integer,"
-            + ItemContract.ItemEntry.COLUMN_NAME + " text,"
-            + ItemContract.ItemEntry.COLUMN_PRICE + " text,"
-            + COLUMN_DATE + " integer)";
+            +ItemContract.ItemEntry.COLUMN_QUANTITY+ "  INTEGER,"
+            +ItemContract.ItemEntry.COLUMN_NAME+ " TEXT,"
+            +ItemContract.ItemEntry.COLUMN_PRICE+ " INTEGER,"
+            +COLUMN_DATE+ " INTEGER);";
     public static final String DROP_TABLE = " DROP TABLE IF EXISTS " + ItemContract.ItemEntry.TABLE_NAME;
 
     public ItemDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        SQLiteDatabase database = this.getWritableDatabase();
 
         Log.d(TAG, "ItemDbHelper:database created... ");
     }
@@ -45,10 +44,9 @@ public class ItemDbHelper extends SQLiteOpenHelper {
         Log.d(TAG, "ItemDbHelper:table created... ");
     }
 
-    //    there is a differnce in creating a object of SQliteOpenHelper AND SQLiteDatabase
-    public void addItem(SQLiteDatabase db, String quantity, int item_name, int date
+    //    there is a difference in creating a object of SQLiteOpenHelper AND SQLiteDatabase
+    public void addItem(SQLiteDatabase db, int quantity, String item_name, int date
             , int price) {
-
     ContentValues values = new ContentValues();
         values.put(ItemContract.ItemEntry.COLUMN_QUANTITY,quantity);
         values.put(ItemContract.ItemEntry.COLUMN_NAME, item_name);
@@ -56,6 +54,7 @@ public class ItemDbHelper extends SQLiteOpenHelper {
         values.put(ItemContract.ItemEntry.COLUMN_PRICE, price);
 
         db.insert(ItemContract.ItemEntry.TABLE_NAME,null, values);
+        Log.d(TAG, "ItemDbHelper:item inserted successfully... ");
 
 
     }
@@ -65,13 +64,13 @@ public class ItemDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL(DROP_TABLE);
+
         onCreate(db);
 
     }
 
-    public Cursor getItem() {
-
-            SQLiteDatabase db = this.getReadableDatabase();
+    public Cursor getItem(SQLiteDatabase db) {
+        db = this.getReadableDatabase();
 
 
         String[] projection = {
@@ -92,5 +91,9 @@ public class ItemDbHelper extends SQLiteOpenHelper {
         cursor.getColumnIndex(COLUMN_PRICE);
 
         return cursor;
+    }
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.setVersion(oldVersion);
     }
 }

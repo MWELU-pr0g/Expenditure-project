@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             dbHelper=new ItemDbHelper(this);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplication()));
-        adapter = new ExependitureAdapter(this, dbHelper.getItem());
+        adapter = new ExependitureAdapter(this, dbHelper.getItem(db));
         recyclerView.setAdapter(adapter);
     }
         public void signOut (View view){
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onResume () {
             super.onResume();
-            adapter.swapCursor(dbHelper.getItem());
+            adapter.swapCursor(dbHelper.getItem(db));
         }
     }
 

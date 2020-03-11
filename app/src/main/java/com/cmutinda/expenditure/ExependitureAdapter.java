@@ -27,8 +27,8 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
             super(itemView);
 
             name=itemView.findViewById(R.id.text1);
-            price=itemView.findViewById(R.id.text3);
-            date=itemView.findViewById(R.id.text2);
+            price=itemView.findViewById(R.id.text2);
+            date=itemView.findViewById(R.id.text3);
         }
     }
 
@@ -47,12 +47,12 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
             return;}
          String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
          int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
-         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DATE));
+//         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DATE));
 
 
          holder.name.setText(name);
          holder.price.setText(mctx.getString(R.string.price, String.valueOf(price)));
-         holder.date.setText(String.valueOf(date));
+//         holder.date.setText(String.valueOf(date));
     }
     @Override
     public int getItemCount() {
