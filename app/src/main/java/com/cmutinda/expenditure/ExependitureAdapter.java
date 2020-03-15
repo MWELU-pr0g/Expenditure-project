@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -33,7 +34,6 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
     }
 
 
-
     @Override
     public ExpenditureViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(mctx);
@@ -54,6 +54,7 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
          holder.price.setText(mctx.getString(R.string.price, String.valueOf(price)));
 //         holder.date.setText(String.valueOf(date));
     }
+
     @Override
     public int getItemCount() {
         return mcursor.getCount();

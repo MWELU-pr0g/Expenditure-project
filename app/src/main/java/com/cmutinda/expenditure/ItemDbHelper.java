@@ -92,6 +92,16 @@ public class ItemDbHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public Cursor getSum(SQLiteDatabase db) {
+
+        Cursor cur = db.rawQuery("SELECT SUM(price) FROM shopping_list ", null);
+        if (cur.moveToFirst()) {
+            cur.getColumnIndex(COLUMN_PRICE);
+
+        }
+        return cur;
+    }
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.setVersion(oldVersion);

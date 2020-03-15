@@ -9,6 +9,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
+        android:id="@+id/loginIMAGE"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:src="@drawable/ic_person_black_24dp" />
@@ -55,7 +56,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/pwd"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:inputType="textPassword"/>
     </LinearLayout>
     <Button
         android:id="@+id/loginButton"

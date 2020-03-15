@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class LoginActivity extends Activity {
     private FirebaseAuth fauth;
     private TextView mcreate;
     private TextView mforgot;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class LoginActivity extends Activity {
         mcreate = findViewById(R.id.loginText2);
 //        mforgot = findViewById(R.id.account);
         fauth = FirebaseAuth.getInstance();
+        image=findViewById(R.id.loginIMAGE);
+
 
         lgnButton=findViewById(R.id.loginButton);
         lgnButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +69,7 @@ public class LoginActivity extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), NavDrawerActivity.class));
 
 
                         } else {
@@ -90,5 +94,6 @@ public class LoginActivity extends Activity {
             }
         });
     }
+
 
 }

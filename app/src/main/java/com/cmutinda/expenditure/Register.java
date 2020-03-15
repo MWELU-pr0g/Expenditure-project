@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +25,14 @@ public class Register extends Activity {
     private Button createButton;
     private FirebaseAuth fauth;
     private TextView create;
+    ProgressBar bar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        bar=findViewById(R.id.accountBar);
         mEdit1 = findViewById(R.id.REdit1);
         mEdit2 = findViewById(R.id.REdit2);
         mEdit3 = findViewById(R.id.REdit3);
@@ -62,6 +64,8 @@ public class Register extends Activity {
                 }
 
 
+
+                bar.setVisibility(View.VISIBLE);
                 fauth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -74,7 +78,7 @@ public class Register extends Activity {
 
                                     Toast.makeText(Register.this, "Authentication failed!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
-
+                                    bar.setVisibility(View.GONE);
                                 }
 
                             }
@@ -83,5 +87,8 @@ public class Register extends Activity {
             }
         });
 
+    }
+    public void loginBack(View view) {
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
     }
 }
