@@ -69,7 +69,7 @@ public class LoginActivity extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), NavDrawerActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
 
                         } else {

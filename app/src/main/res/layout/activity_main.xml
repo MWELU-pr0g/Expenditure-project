@@ -43,6 +43,9 @@
             </android.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <include layout="@layout/content_main" />
+
+        <include layout="@layout/list_view" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,4 +61,12 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <androidx.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,12 +1,9 @@
 package com.cmutinda.expenditure;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-
-import static android.view.LayoutInflater.from;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,10 +22,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,28 +33,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddItemActivity.class));
             }
         });
-        dbHelper = new ItemDbHelper(this);
+            dbHelper=new ItemDbHelper(this);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplication()));
         adapter = new ExependitureAdapter(this, dbHelper.getItem(db));
-        recyclerView.setAdapter(adapter);*/
+        recyclerView.setAdapter(adapter);
+    }
+        public void signOut (View view){
+
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        }
+
+
+        @Override
+        protected void onResume () {
+            super.onResume();
+            adapter.swapCursor(dbHelper.getItem(db));
+        }
     }
 
-    public void signOut(View view) {
-
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        finish();
-    }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        adapter.swapCursor(dbHelper.getItem(db));
-    }
-
-
-
-
-}

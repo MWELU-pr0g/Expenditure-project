@@ -5,10 +5,6 @@
     tools:overrideLibrary="com.google.firebase.auth">
 
     <application>
-        <activity
-            android:name=".NavDrawerActivity"
-            android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.INSERT" />
