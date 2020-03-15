@@ -6,4 +6,6 @@
     <color name="white">#FFFFFF</color>
     <color name="gold">#D4AF37</color>
     <color name="black">#FA1D1205</color>
+    <color name="divider_color">#eaeaea</color>
+    <color name="toolbarlight">#eaeaea</color>
 </resources>
