@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SQLiteDatabase db;
-    private ItemDbHelper dbHelper;
-    private ExependitureAdapter adapter;
+    ListView listView;
+
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        myAdapter = new MyAdapter(this);
+        listView = findViewById(R.id.left_drawer);
+        listView.setAdapter(myAdapter);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -37,34 +42,23 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.main_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddItemActivity.class));
+                startActivity(new Intent(MainActivity.this, ExpensesList.class));
+
             }
+
+            public void signOut(View view) {
+
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            }
+
+
         });
-            dbHelper=new ItemDbHelper(this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplication()));
-        adapter = new ExependitureAdapter(this, dbHelper.getItem(db));
-        recyclerView.setAdapter(adapter);
-    }
-        public void signOut (View view){
-
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-        }
-
-
-        @Override
-        protected void onResume () {
-            super.onResume();
-            adapter.swapCursor(dbHelper.getItem(db));
-        }
-    }
-
+    }}
 
 

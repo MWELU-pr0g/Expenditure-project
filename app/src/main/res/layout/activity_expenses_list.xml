@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
+    tools:context=".ExpensesList">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +12,7 @@
         app:tabMode="fixed">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/black"
@@ -26,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/toolbartitle"
+                    android:id="@+id/toolbartitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -36,17 +34,6 @@
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="0dp"
-                    android:src="@drawable/ic_calender_white"
-                    android:onClick="datePicker"/>
 
 
             </RelativeLayout>
@@ -56,17 +43,19 @@
 
 
     </com.google.android.material.appbar.AppBarLayout>
-    <include layout="@layout/card_view"/>
+
+
+    <include layout="@layout/content_main"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_fab"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/gold"
-        android:src="@drawable/ic_arrow_black"
+        android:src="@drawable/ic_plusv"
         android:tooltipText="Post something" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

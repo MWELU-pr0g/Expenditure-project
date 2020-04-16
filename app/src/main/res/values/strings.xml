@@ -5,6 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn">ADD ITEM</string>
     <string name="rate">Rate US</string>
+    <string name="user">username@gmail.com</string>
     <string name="category">Category</string>
     <string name="email">email</string>
     <string name="balance">INCOME BALANCE</string>
@@ -13,6 +14,7 @@
     <string name="create">CREATE ACCOUNT</string>
     <string name="confirm">confirm password</string>
     <string name="username">username</string>
+
     <string name="pwd">password</string>
     <string name="account">FORGOT PASSWORD?</string>
     <string name="login"> LOGIN TO ACCOUNT</string>
@@ -38,4 +40,23 @@
     <string name="home_second">Home Second</string>
     <string name="version">v.1.0</string>
     <string name="copyright">Copyright</string>
+
+
+    <string-array name="drawer_list">
+        <item>Profile</item>
+        <item>Account Balance</item>
+        <item>Total Expense</item>
+        <item>Category</item>
+        <item>Settings</item>
+        <item>Log Out </item>
+    </string-array>
+    <string name="title_activity_expenses_list">ExpensesList</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

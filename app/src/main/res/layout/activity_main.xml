@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -21,7 +20,7 @@
         <RelativeLayout
             android:id="@+id/profileDetails"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="190dp"
             android:background="@color/black"
             android:padding="@dimen/dimtendp">
 
@@ -31,19 +30,30 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@+id/imageViewProfile"
+                android:layout_below="@+id/imageViewProfile"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="normal"
-                tools:text="Username" />
+                tools:text="@string/username" />
+
+            <TextView
+                android:id="@+id/emailProfileText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProfileText"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                tools:text="@string/user" />
 
             <ImageView
                 android:id="@+id/imageViewProfile"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                 />
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true" />
 
 
         </RelativeLayout>
@@ -81,10 +91,11 @@
                 android:text="@string/version"
                 android:textColor="#f2f2f2"
                 android:textSize="12sp" />
+
             <TextView
-                android:layout_above="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/version"
                 android:layout_centerHorizontal="true"
                 android:text="@string/copyright"
                 android:textColor="#f2f2f2"

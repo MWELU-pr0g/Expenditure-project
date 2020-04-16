@@ -10,15 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapter.ExpenditureViewHolder> {
+    private List<Spend> spend=new ArrayList<>();
     private Context mctx;
     private Cursor mcursor;
-    public  ExependitureAdapter(Context context, Cursor cursor){
-
-        mctx=context;
-        mcursor=cursor;
-    }
+    public  ExependitureAdapter(){}
     public class ExpenditureViewHolder extends RecyclerView.ViewHolder{
         public TextView name;
         public TextView price;
@@ -29,46 +29,49 @@ public class ExependitureAdapter extends RecyclerView.Adapter<ExependitureAdapte
 
             name=itemView.findViewById(R.id.text1);
             price=itemView.findViewById(R.id.text2);
-            date=itemView.findViewById(R.id.text3);
         }
     }
 
 
     @Override
     public ExpenditureViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(mctx);
+        LayoutInflater inflater=LayoutInflater.from(parent.getContext());
        View view= inflater.inflate(R.layout.row_layout,parent,false);
         return new ExpenditureViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder( ExpenditureViewHolder holder, int position) {
-        if(!mcursor.moveToPosition(position)){
-            return;}
-         String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
-         int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
-//         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DATE));
+//        if(!mcursor.moveToPosition(position)){
+//            return;}
+//         String name = mcursor.getString(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_NAME));
+//         int price = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_PRICE));
+////         int date = mcursor.getInt(mcursor.getColumnIndex(ItemContract.ItemEntry.COLUMN_DATE));
 
-
-         holder.name.setText(name);
-         holder.price.setText(mctx.getString(R.string.price, String.valueOf(price)));
+        Spend currentSpend =spend.get(position);
+         holder.name.setText(currentSpend.getItem_name());
+         holder.price.setText( String.valueOf(currentSpend.getPrice()));
 //         holder.date.setText(String.valueOf(date));
     }
 
     @Override
     public int getItemCount() {
-        return mcursor.getCount();
+        return spend.size();
     }
 
-  public void swapCursor(Cursor newCursor){
-        if(mcursor!=null){
-            mcursor.close();
-        }
-        if(newCursor!=null){
-            mcursor = newCursor;
-            notifyDataSetChanged();
+    public void setSpend(List<Spend> spend) {
+        this.spend = spend;
+        notifyDataSetChanged();
+    }
+//  public void swapCursor(Cursor newCursor){
+//        if(mcursor!=null){
+//            mcursor.close();
+//        }
+//        if(newCursor!=null){
+//            mcursor = newCursor;
+//            notifyDataSetChanged();
 
 
         }
-  }
-}
+
+
