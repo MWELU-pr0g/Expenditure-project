@@ -14,7 +14,7 @@ public class SpendRepository {
     private LiveData<List<Spend>> allSpending;
 
     public SpendRepository(Application application){
-        SpendDatabase database=SpendDatabase.getInstance(application);
+        SpendDatabase database=SpendDatabase.getDatabase(application);
         spendDao=database.spendDao();
 
         allSpending=spendDao.getAll();

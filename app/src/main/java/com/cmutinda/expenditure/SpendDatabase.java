@@ -9,20 +9,20 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 public abstract class SpendDatabase extends RoomDatabase {
-    public static SpendDatabase instance;
+    public static SpendDatabase INSTANCE;
     public abstract SpendDao spendDao();
-    public static synchronized SpendDatabase getInstance(Context context){
-        if(instance==null){
-            instance= Room.databaseBuilder(context.getApplicationContext(), SpendDatabase.class,"spend_database")
+    public static synchronized SpendDatabase getDatabase(final Context context){
+        if(INSTANCE==null){
+          INSTANCE  = Room.databaseBuilder(context.getApplicationContext(), SpendDatabase.class,"spend_database")
                     .fallbackToDestructiveMigration().addCallback(callback).build();
         }
-        return instance;
+        return INSTANCE ;
     }
     private static RoomDatabase.Callback callback=new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
+            new PopulateDbAsyncTask(INSTANCE).execute();
         }
     };
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{

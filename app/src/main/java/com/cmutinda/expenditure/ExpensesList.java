@@ -27,6 +27,7 @@ public class ExpensesList extends AppCompatActivity {
     public static final int ADD_ITEM_REQUEST = 1;
     private SpendViewModel model;
 
+
     private ItemDbHelper dbHelper;
     private ExependitureAdapter adapter;
     private SQLiteDatabase db;

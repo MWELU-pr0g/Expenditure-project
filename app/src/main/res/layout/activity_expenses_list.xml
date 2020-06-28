@@ -55,7 +55,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/gold"
-        android:src="@drawable/ic_plusv"
-        android:tooltipText="Post something" />
+        android:src="@drawable/ic_add_white"
+        android:tooltipText="Post something"
+        android:backgroundTint="@color/black"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
